@@ -1,57 +1,131 @@
-<p-fieldset legend="Testing">
-    <form>
-        <span class="p-float-label">
-            <input id="pokeNameId" name="pokeNameId" type="text" pInputText [(ngModel)]="pokeNameId"> 
-            <label for="pokeNameId">Pokemon Name or ID</label>
-        </span>
-        <button pButton pRipple type="button" label="Primary" class="p-button-rounded" (click)="getPokemon()"></button>
-    </form>
-</p-fieldset>
-<br>
-<p-fieldset legend="Pokemon Data">
-    <h5>ID</h5>
-    <p>{{pokemonSearch.id}}</p>
-    <h5>Name</h5>
-    <p>{{pokemonSearch.name | titlecase}}</p>
-    <h5>Abilities</h5>
-    <li *ngFor="let abilities of pokemonSearch.abilities">
-        <span>{{abilities.ability?.name |titlecase}}</span>
-    </li>
-    <h5>Image</h5>
-    <img [src]="pokemonSearch.sprites?.front_default?? ''"/>
-</p-fieldset>
-<br>
-<p-dataView #dv [value]="pokemonList" [rows]="10" [paginator]="true" >
-    <p-header>
-        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-    </p-header>
-    <ng-template let-pokemon pTemplate="listItem">
-        <div>
-            {{pokemon.name | titlecase}} ({{pokemon.id}})
-            <img [src]="pokemon.sprites?.front_default?? ''"/>
+<div class="content">
+    <!-- <div class="col-lg-3 col-md-6 col-sm-6">
+        
+        <div class="card card-stats">
+            <div class="card-header"><h5 class="card-title">Testing</h5></div>
+            <div class="card-body ">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <input id="pokeNameId" name="pokeNameId" type="text" class="form-control" [(ngModel)]="pokeNameId"> 
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="card-footer ">
+              <hr>
+              <div class="update ml-auto mr-auto">
+                <button type="button" class="btn btn-primary btn-round" (click)="getPokemon()">Get Pokemon</button>
+              </div>
+            </div>
+          </div>
+    </div>
+    <br> -->
+
+    <div *ngIf="pokemonSearch.name != '' else pokemonDetails">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+            <div class="card-header">
+                <h5 class="card-title">
+                    {{pokemonSearch.id}} {{pokemonSearch.name | titlecase}}
+                </h5>
+            </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-12">
+                    <div class="img-container">
+                        <img [src]="pokemonSearch.sprites?.front_default?? ''" [style]="{'max-width':'100%'}"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="numbers">
+                          <p class="card-title"><p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="ml-auto mr-auto">
+                        <mat-form-field class="stats">
+                            <mat-chip-list class="type">
+                                <div *ngFor="let types of pokemonSearch.types">
+                                    <mat-chip [class]=types.type?.name>
+                                        {{types.type?.name |titlecase}}
+                                    </mat-chip>
+                                </div>
+                            </mat-chip-list>
+                        </mat-form-field>
+                    </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <hr>
+                <div class="update ml-auto mr-auto">
+                    <button type="button" class="btn btn-secondary btn-round">Ver Pokemon</button>
+                </div>
+              </div>
+            </div>
         </div>
+    </div>
+
+    <ng-template #pokemonDetails>
+        
     </ng-template>
-    <ng-template let-pokemon pTemplate="gridItem">
-        <div class="p-col-12 p-md-4">
+    <div class="row">
+        <div *ngFor="let pokemon of pokemonList" class="col-lg-2 col-md-4 col-sm-4">
+            <div class="card card-stats">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{pokemon.id}} {{pokemon.name | titlecase}}
+                    </h5>
+                </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <div class="img-container">
+                            <img [src]="pokemon.sprites?.front_default?? ''" [style]="{'max-width':'100%'}"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="numbers">
+                              <p class="card-title"><p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="ml-auto mr-auto">
+                            <mat-form-field class="stats">
+                                <mat-chip-list class="type">
+                                    <div *ngFor="let types of pokemon.types">
+                                        <mat-chip [class]="types.type?.name">
+                                            {{types.type?.name |titlecase}}
+                                        </mat-chip>
+                                    </div>
+                                </mat-chip-list>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <hr>
+                    <div class="update ml-auto mr-auto">
+                        <button type="button" class="btn btn-secondary btn-round" (click)="getById('' + pokemon.id)">Ver Pokemon</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+    </div>
+    <!-- <div class="card grid">
+        <div *ngFor="let pokemon of pokemonList">
             <div class="product-grid-item card">
-                <div class="product-grid-item-content">
-                    <div class="product-name">{{pokemon.name}} ({{pokemon.id}})</div>
-                    <img [src]="pokemon.sprites?.front_default?? ''" [alt]="pokemon.name" [style]="{'width': '25%'}"/>
+                <div class="col-12 md:col-6 lg:col-3 sm:flex-nowrap">
+                    <div class="product-grid-item-content">
+                        <img [src]="pokemon.sprites?.front_default?? ''" [alt]="pokemon.name"/>
+                        <div class="product-name">{{pokemon.name}} ({{pokemon.id}})</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </ng-template>
-</p-dataView>
-<!-- <hr>
-<div *ngFor="let pokemon of pokemonList">
-    <p-card class="col-3">
-        <p-fieldset legend="{{pokemon.name | titlecase}} ({{pokemon.id}})" [collapsed]="true" [toggleable]="true" 
-            [style]="{'width': '250px'}">
-            <img [src]="pokemon.sprites?.front_default?? ''"/>
-            <h5>Abilities</h5>
-            <span *ngFor="let abilities of pokemon.abilities">
-                <p-chip label="{{abilities.ability?.name |titlecase}}"></p-chip>
-            </span>
-        </p-fieldset>
-    </p-card>
-</div> -->
+    </div> -->
+</div>

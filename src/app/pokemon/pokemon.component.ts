@@ -4,7 +4,6 @@ import { mergeMap } from 'rxjs/operators';
 import { Pokemon } from '../models/pokemon';
 import { Generation } from '../models/generation';
 import { PokemonService } from '../services/pokemon.service';
-import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-pokemon',
@@ -14,12 +13,19 @@ import { PrimeNGConfig } from 'primeng/api';
 export class PokemonComponent implements OnInit {
 
     pokeNameId: string = "";
-    pokemonSearch: Pokemon = {};
+    pokemonSearch: Pokemon = {
+        id: 0,
+        name: '',
+        type: [""],
+        abilities: [ {ability: {name: "", url: ""}, is_hidden: false, slot:0} ],
+        sprites: undefined,
+        types: undefined
+    };
     pokemonList: Pokemon[] = [];
 
     generations: Generation = new Generation;
 
-    constructor(private _pokemonService: PokemonService, private primengConfig: PrimeNGConfig) { }
+    constructor(private _pokemonService: PokemonService) { }
 
     ngOnInit(): void {
         const loadPokemon$ = of(this.generations.getGeneration1());
@@ -32,18 +38,29 @@ export class PokemonComponent implements OnInit {
                             }
                         ))
                 })
-            ).subscribe();
-        this.primengConfig.ripple = true;
+            ).subscribe(
+                () => this.pokemonList.sort(
+                        (a:Pokemon, b: Pokemon) => a.id - b.id)
+            );
+        
     }
 
     getPokemon() {
         this._pokemonService.getByName(this.pokeNameId).subscribe(
             (data: Pokemon) => {
-                console.log(data);
                 this.pokemonSearch = data;
+                console.log(this.pokemonSearch);
             }
         );
     }
 
+    getById(pokemonID: string) {
+        this._pokemonService.getByName(pokemonID).subscribe(
+            (data: Pokemon) => {
+                this.pokemonSearch = data;
+                window.scroll(0,0);
+            }
+        );
+    }
     
 }

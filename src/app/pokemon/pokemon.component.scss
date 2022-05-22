@@ -1,129 +1,102 @@
-:host ::ng-deep {
-  .p-dropdown {
-      width: 14rem;
-      font-weight: normal;
-  }
-  
-  .product-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-  }
-  
-  .product-description {
-      margin: 0 0 1rem 0;
-  }
-  
-  .product-category-icon {
-      vertical-align: middle;
-      margin-right: .5rem;
-  }
-  
-  .product-category {
-      font-weight: 600;
-      vertical-align: middle;
-  }
-  
-  .product-list-item {
-      display: flex;
-      align-items: center;
-      padding: 1rem;
-      width: 100%;
-  
-      img {
-          width: 150px;
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          margin-right: 2rem;
-      }
-  
-      .product-list-detail {
-          flex: 1 1 0;
-      }
-  
-      .p-rating {
-          margin: 0 0 .5rem 0;
-      }
-  
-      .product-price {
-          font-size: 1.5rem;
-          font-weight: 600;
-          margin-bottom: .5rem;
-          align-self: flex-end;
-      }
-  
-      .product-list-action {
-          display: flex;
-          flex-direction: column;
-      }
-  
-      .p-button {
-          margin-bottom: .5rem;
-      }
-  }
-  
-  .product-grid-item {
-      margin: .5em;
-      border: 1px solid #dee2e6;
-  
-      .product-grid-item-top,
-      .product-grid-item-bottom {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-      }
-  
-      img {
-          width: 75%;
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          margin: 2rem 0;
-      }
-  
-      .product-grid-item-content {
-          text-align: center;
-      }
-  
-      .product-price {
-          font-size: 1.5rem;
-          font-weight: 600;
-      }
-  }
-}
+.mff{ width:100% }
 
-.card {
-  padding: 2rem;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  margin-bottom: 2rem;
-}
-
-@media screen and (max-width: 576px) {
-:host ::ng-deep .product-list-item {
-  flex-direction: column;
-  align-items: center;
-
-  img {
-    width: 75%;
-    margin: 2rem 0;
-  }
-
-  .product-list-detail {
-    text-align: center;
-  }
-
-  .product-price {
-    align-self: center;
-  }
-
-  .product-list-action {
+.img-container {
+    max-width: 100%;
     display: flex;
-    flex-direction: column;
-  }
-
-  .product-list-action {
-    margin-top: 2rem;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
+    justify-content: space-around
 }
+
+.type {
+    color:white;
+}
+
+.grass {
+    background-color: #78C850;
+    border: 1px solid #4E8234;
+}
+
+.poison {
+    background: #A040A0;
+    border: 1px solid #682A68;
+}
+
+.fire {
+    background: #F08030;
+    border: 1px solid #9C531F;
+}
+
+.flying {
+    background: #A890F0;
+    border: 1px solid #6D5E9C;
+}
+
+.water {
+    background: #6890F0;
+    border: 1px solid #445E9C;
+}
+
+.bug {
+    background: #A8B820;
+    border: 1px solid #6D7815;
+}
+
+.normal {
+    background: #A8A878;
+    border: 1px solid #6D6D4E;
+}
+
+.electric {
+    background: #F8D030;
+    border: 1px solid #A1871F;
+}
+
+.ground {
+    background: #E0C068;
+    border: 1px solid #927D44;
+}
+
+.fairy {
+    background: #EE99AC;
+    border: 1px solid #9B6470;
+}
+
+.fighting {
+    background: #C03028;
+    border: 2px solid #D67873;
+}
+
+.psychic {
+    background: #F85888;
+    border: 1px solid #A13959;
+}
+
+.rock {
+    background: #B8A038;
+    border: 1px solid #786824;
+}
+
+.ice {
+    background: #98D8D8;
+    border: 1px solid #638D8D;
+}
+
+.dragon {
+    background: #7038F8;
+    border: 1px solid #4924A1;
+}
+
+.ghost {
+    background: #705898;
+    border: 1px solid #493963;
+}
+
+.dark {
+    background: #705848;
+    border: 1px solid #49392F;
+}
+
+.steel {
+    background: #B8B8D0;
+    border: 1px solid #787887;
 }
