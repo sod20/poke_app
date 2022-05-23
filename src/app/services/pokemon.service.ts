@@ -12,7 +12,7 @@ export class PokemonService {
 
     url: string = "https://pokeapi.co/api/v2/";
 
-    getByName(idOrName: string) {
+    getByName(idOrName: number | string ) {
         return this.http.get<Pokemon>(this.url + "pokemon/" + idOrName);
     }
 
