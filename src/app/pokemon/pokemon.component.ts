@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { of, map } from 'rxjs';
+import { of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
-import { Pokemon } from '../models/pokemon';
+import { GEN, Pokemon } from '../models/pokemon';
 import { Generation } from '../models/generation';
 import { PokemonService } from '../services/pokemon.service';
 
@@ -23,16 +23,16 @@ export class PokemonComponent implements OnInit {
     };
     pokemonList: Pokemon[] = [];
 
-    generations: Generation = new Generation;
+    private generations: Generation = new Generation();
 
     constructor(private _pokemonService: PokemonService) { }
 
     ngOnInit(): void {
-        const loadPokemon$ = of(this.generations.getGeneration1());
+        const loadPokemon$ = of(this.generations.getGeneration(GEN.THREE));
         loadPokemon$.pipe(
                 mergeMap(
                     (data: number[]) => {
-                        return data.map(id => this._pokemonService.getByName(""+id).subscribe(
+                        return data.map(id => this._pokemonService.getByName(id).subscribe(
                             (data: Pokemon) => {
                                 this.pokemonList.push(data);
                             }
@@ -54,13 +54,17 @@ export class PokemonComponent implements OnInit {
         );
     }
 
-    getById(pokemonID: string) {
+    getById(pokemonID: number | string, toTop: boolean = false) {
         this._pokemonService.getByName(pokemonID).subscribe(
             (data: Pokemon) => {
                 this.pokemonSearch = data;
-                window.scroll(0,0);
+                if(toTop) this.goToTop();
             }
         );
+    }
+
+    private goToTop() {
+        window.scroll(0,0);
     }
     
 }
