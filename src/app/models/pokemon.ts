@@ -36,3 +36,9 @@ export interface Type {
         url: string;
     }
 }
+
+export enum GEN {
+    ONE = 151,
+    TWO = 251,
+    THREE = 386
+};
