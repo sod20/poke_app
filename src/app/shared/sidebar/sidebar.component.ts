@@ -8,6 +8,8 @@ import { SharedService } from 'src/app/services/shared.service';
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[] = [];
+
+    generations = [1,2,3,4,5,6,7];
     
     constructor (private _sharedService: SharedService) {}
 

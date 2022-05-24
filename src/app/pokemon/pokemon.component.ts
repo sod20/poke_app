@@ -47,11 +47,23 @@ export class PokemonComponent implements OnInit {
                     case 3:
                         gen = GEN.THREE;
                         break;
+                    case 4:
+                        gen = GEN.FOUR;
+                        break;
+                    case 5:
+                        gen = GEN.FIVE;
+                        break;
+                    case 6:
+                        gen = GEN.SIX;
+                        break;
+                    case 7:
+                        gen = GEN.SEVEN;
+                        break;
                     case 10:
                         this.pokemonList.forEach(poke => console.log(poke.id));
                         break;
                 }
-                if (data <= 3) {
+                if (data <= 7) {
                     this.changeGeneration(gen)
                 }
             }

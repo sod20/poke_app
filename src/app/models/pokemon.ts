@@ -40,5 +40,9 @@ export interface Type {
 export enum GEN {
     ONE = 151,
     TWO = 251,
-    THREE = 386
+    THREE = 386,
+    FOUR = 493,
+    FIVE = 649,
+    SIX = 721,
+    SEVEN = 809
 };

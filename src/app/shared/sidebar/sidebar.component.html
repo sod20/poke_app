@@ -10,21 +10,11 @@
       </a>
     </div>
       <ul class="nav">
-          <li>
+          <li *ngFor="let gen of generations">
               <a>
-                <button type="button" class="btn btn-secondary" (click)="setGeneration(1)">Generation 1</button>
+                <button type="button" class="btn btn-secondary" (click)="setGeneration(gen)">Generation {{gen}}</button>
               </a>
           </li>
-          <li>
-                <a>
-                <button type="button" class="btn btn-secondary" (click)="setGeneration(2)">Generation 2</button>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <button type="button" class="btn btn-secondary" (click)="setGeneration(3)">Generation 3</button>
-                </a>
-            </li>
             <li>
                 <a>
                     <button type="button" class="btn btn-secondary" (click)="setGeneration(10)">See Pokemon List</button>
