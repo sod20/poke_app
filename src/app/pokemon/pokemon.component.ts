@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { asyncScheduler, of } from 'rxjs';
+import { delay, mergeMap, subscribeOn } from 'rxjs/operators';
 import { GEN, Pokemon } from '../models/pokemon';
 import { Generation } from '../models/generation';
 import { PokemonService } from '../services/pokemon.service';
@@ -75,13 +75,16 @@ export class PokemonComponent implements OnInit {
         const loadPokemon$ = of(this.generations.getGeneration(gen));
         loadPokemon$.pipe(
                 mergeMap(
-                    (data: number[]) => {
-                        return data.map(id => this._pokemonService.getByName(id).subscribe(
-                            (data: Pokemon) => {
-                                this.pokemonList.push(data);
+                    (pokeIdByGen: number[]) => {
+                        return pokeIdByGen.map(pokeId => this._pokemonService.getByName(pokeId)
+                        .subscribe(
+                            (pokemon: Pokemon) => {
+                                this.pokemonList.push(pokemon);
                             }
                         ))
-                })
+                }),
+                subscribeOn(asyncScheduler),
+                delay(500)//enough time to load the pokemon
             ).subscribe(
                 () => this.pokemonList.sort(
                         (a:Pokemon, b: Pokemon) => a.id - b.id)

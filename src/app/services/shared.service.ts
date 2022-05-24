@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 export class SharedService {
 
-    private obsGeneration$ = new BehaviorSubject<any>({});
+    private obsGeneration$ = new Subject<number>();
     currentGeneration$ = this.obsGeneration$.asObservable();
 
     constructor() { }
