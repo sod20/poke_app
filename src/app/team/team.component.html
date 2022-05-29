@@ -1,0 +1,11 @@
+<mat-card class="card">
+    <div class="team" *ngIf="pokeTeam.length > 0">
+        <button *ngFor="let p of pokeTeam" class="btn btn-neutral" (click)="getSelection(p.id)">
+            <img src="../../assets/img/pokeball.svg">
+            {{ p.name }}
+        </button>
+    </div>
+    <div class="team" *ngIf="pokeTeam.length == 0">
+        <h3>You don't have any pokemon on team yet!</h3>
+    </div>
+</mat-card>

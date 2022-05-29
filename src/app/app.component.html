@@ -3,7 +3,7 @@
         <sidebar-cmp></sidebar-cmp>
     </div>
     <div class="main-panel">
-        <navbar-cmp></navbar-cmp>
-        <app-pokemon></app-pokemon>
+        <navbar-cmp (pokeSearch)="setPoke($event)"></navbar-cmp>
+        <app-pokemon [pokemonSearch]="currentPoke"></app-pokemon>
     </div>
 </div>
