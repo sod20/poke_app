@@ -5,6 +5,7 @@ export interface Pokemon {
     abilities:[Abilities];
     sprites?:Sprite;
     types?:[Type];
+    isSelected: boolean;
 }
 
 export interface Abilities {

@@ -9,7 +9,7 @@
             <span class="navbar-toggler-bar bar3"></span>
           </button>
         </div>
-        <a class="navbar-brand" href="javascript:void(0)">Titulo</a>
+        <a class="navbar-brand" href="javascript:void(0)">Poke by Gen</a>
       </div>
       <button class="navbar-toggler" type="button"
         [attr.aria-expanded]="true" aria-controls="collapseExample">
@@ -20,12 +20,12 @@
       <div class="collapse navbar-collapse justify-content-end" id="collapseExample" >
         <form>
           <div class="input-group no-border">
-            <input type="text" value="" class="form-control" placeholder="Search...">
             <div class="input-group-append">
               <div class="input-group-text">
                 <i class="nc-icon nc-zoom-split"></i>
               </div>
             </div>
+            <input matInput [formControl]="searchControl" type="text" value="" class="form-control" placeholder="Search a pokemon">
           </div>
         </form>
         <ul class="navbar-nav">
