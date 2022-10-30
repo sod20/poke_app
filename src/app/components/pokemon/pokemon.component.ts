@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { asyncScheduler, of } from 'rxjs';
 import { delay, mergeMap, subscribeOn } from 'rxjs/operators';
-import { GEN, Pokemon } from '../models/pokemon';
-import { Generation } from '../models/generation';
+import { GEN, Pokemon } from '../../models/pokemon';
+import { Generation } from '../../models/generation';
 import { PokemonService } from '../services/pokemon.service';
 import { SharedService } from '../services/shared.service';
 
@@ -104,6 +104,7 @@ export class PokemonComponent implements OnInit {
         this._pokemonService.getByName(pokemonID).subscribe(
             (data: Pokemon) => {
                 this.pokemonSearch = data;
+                console.log(this.pokemonSearch);
                 if(toTop) this.goToTop();
             }
         );

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from 'src/app/services/shared.service';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/app/components/services/shared.service';
 
 @Component({
     selector: 'sidebar-cmp',
@@ -11,12 +12,15 @@ export class SidebarComponent implements OnInit {
 
     generations = [1,2,3,4,5,6,7];
     
-    constructor (private _sharedService: SharedService) {}
+    constructor (private _sharedService: SharedService, private router: Router) {}
 
     ngOnInit() {
     }
 
     setGeneration(gen: number) {
-        this._sharedService.setCurrentGeneration(gen);
+        if (this.router.url != "/" ) {
+            this.router.navigate(['/']);
+        }
+        setTimeout(() => this._sharedService.setCurrentGeneration(gen), 500);
     }
 }

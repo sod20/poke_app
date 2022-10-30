@@ -1,24 +1,13 @@
-<div class="sidebar-wrapper">
+<div class="container">
     <div class="logo">
-      <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-        <div class="logo-image-small">
-          <img src="assets/img/poke.png">
-        </div>
-      </a>
-      <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-        Team Generator
-      </a>
+        <i class="nes-pokeball"></i> 
+        <i class="nes-ash"></i>
+        <br>
+        <span class="nes-text is-error">Team Generator</span>
     </div>
-      <ul class="nav">
-          <li *ngFor="let gen of generations">
-              <a>
-                <button type="button" class="btn btn-secondary" (click)="setGeneration(gen)">Generation {{gen}}</button>
-              </a>
-          </li>
-            <li>
-                <a>
-                    <button type="button" class="btn btn-secondary" (click)="setGeneration(10)">See Pokemon List</button>
-                </a>
-            </li>
-      </ul>
-  </div>
+    
+    <div *ngFor="let gen of generations">
+        <button style="margin: 0.5em auto 0.5em;" type="button" class="nes-btn is-primary sidebar-button" (click)="setGeneration(gen)">Generation {{gen}}</button>
+    </div>
+    <button style="margin: 0.5em auto 0.5em" type="button" class="nes-btn" (click)="setGeneration(10)">See Pokemon List</button>
+</div>

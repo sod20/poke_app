@@ -10,4 +10,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     exports: [ NavbarComponent ]
 })
 
-export class NavbarModule {}
+export class NavbarModule {
+
+    constructor() {
+        
+    }
+}

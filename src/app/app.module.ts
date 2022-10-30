@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PokemonComponent } from './pokemon/pokemon.component';
+import { PokemonComponent } from './components/pokemon/pokemon.component';
+import { EffectivenessComponent } from './components/effectiveness/effectiveness.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarModule } from './shared/sidebar/sidebar.module';
 
@@ -19,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   declarations: [
     AppComponent,
     PokemonComponent,
+    EffectivenessComponent,
     NavbarComponent
   ],
   imports: [
