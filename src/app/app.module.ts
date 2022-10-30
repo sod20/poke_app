@@ -8,13 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { EffectivenessComponent } from './components/effectiveness/effectiveness.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarModule } from './shared/sidebar/sidebar.module';
-
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-//import {MatChipsModule} from '@angular/material/chips';
+import { HttpClientModule } from '@angular/common/http';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TeamComponent } from './team/team.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     MatChipsModule,
     MatFormFieldModule,
-    SidebarModule
+    ReactiveFormsModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

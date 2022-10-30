@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { asyncScheduler, of } from 'rxjs';
 import { delay, mergeMap, subscribeOn } from 'rxjs/operators';
 import { GEN, Pokemon } from '../../models/pokemon';
@@ -14,15 +14,16 @@ import { SharedService } from '../services/shared.service';
 export class PokemonComponent implements OnInit {
 
     pokeNameId: string = "";
-    pokemonSearch: Pokemon = {
+    @Input() pokemonSearch: Pokemon = {
         id: 0,
         name: '',
         type: [""],
         abilities: [ {ability: {name: "", url: ""}, is_hidden: false, slot:0} ],
         sprites: undefined,
-        types: undefined
+        types: undefined,
+        isSelected: false
     };
-    pokemonList: Pokemon[] = [];
+    public pokemonList: Pokemon[] = [];
 
     private generations: Generation = new Generation();
 
@@ -70,11 +71,11 @@ export class PokemonComponent implements OnInit {
         )
     }
 
-    changeGeneration(gen: GEN) {
+    changeGeneration(gen: GEN): void {
         this.pokemonList = [];
         const loadPokemon$ = of(this.generations.getGeneration(gen));
         loadPokemon$.pipe(
-                mergeMap(
+                switchMap(
                     (pokeIdByGen: number[]) => {
                         return pokeIdByGen.map(pokeId => this._pokemonService.getByName(pokeId)
                         .subscribe(
@@ -91,27 +92,33 @@ export class PokemonComponent implements OnInit {
             );
     }
 
-    getPokemon() {
-        this._pokemonService.getByName(this.pokeNameId).subscribe(
-            (data: Pokemon) => {
-                this.pokemonSearch = data;
-                console.log(this.pokemonSearch);
-            }
-        );
+    public getPokemon(): void {
+        this.getById(this.pokeNameId);
     }
 
-    getById(pokemonID: number | string, toTop: boolean = false) {
+    public getById(pokemonID: number | string, toTop: boolean = false): void {
         this._pokemonService.getByName(pokemonID).subscribe(
             (data: Pokemon) => {
                 this.pokemonSearch = data;
-                console.log(this.pokemonSearch);
                 if(toTop) this.goToTop();
             }
         );
     }
 
-    private goToTop() {
+    private goToTop(): void {
         window.scroll(0,0);
     }
-    
+
+    public modifyTeam(pokemon: Pokemon): void {
+        if (!pokemon.isSelected) {
+            this._pokemonService.addToTeam(pokemon);   
+        } else {        
+            this._pokemonService.removeFromTeam(pokemon);
+            this.pokemonSearch.name = String(); //Soft reset the search
+        }
+    }
+
+    public setSearchOrSelected(pokemon: Pokemon): void {
+        this.pokemonSearch = pokemon;
+    }
 }
