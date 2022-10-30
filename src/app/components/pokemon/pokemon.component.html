@@ -1,0 +1,56 @@
+<div class="content">
+    <div *ngIf="pokemonSearch.name != '' else pokemonDetails">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6" style="margin: 0.5em auto 0.5em; ">
+                <div class="nes-container with-title">
+                    <p class="title">{{pokemonSearch.id}} {{pokemonSearch.name | titlecase}}</p>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                          <div class="img-container">
+                            <img [src]="pokemonSearch.sprites?.front_default?? ''" [style]="{'max-width':'100%'}"/>
+                            <img [src]="pokemonSearch.sprites?.front_shiny?? ''" [style]="{'max-width':'100%'}"/>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="nes-container with-title is-centered is-rounded">
+                        <p class="title">Types(s)</p>
+                        <div *ngFor="let types of pokemonSearch.types">
+                            <a class="nes-badge">
+                                <span [class]="types.type?.name">{{types.type?.name |titlecase}}</span>
+                            </a>
+                        </div>
+                    </div>
+                    <br>
+                    <button style="width: 100%;" type="button" class="nes-btn is-primary" (click)="getById(pokemonSearch.id, true)">Ver Pokemon</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #pokemonDetails>
+        
+    </ng-template>
+    <div class="row">
+        <div *ngFor="let pokemon of pokemonList" class="col-lg-3 col-md-6 col-sm-6" style="margin: 0.5em auto 0.5em; ">
+            <div class="nes-container with-title">
+                <p class="title">{{pokemon.id}} {{pokemon.name | titlecase}}</p>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                      <div class="img-container">
+                          <img [src]="pokemon.sprites?.front_default?? ''" [style]="{'max-width':'100%'}"/>
+                      </div>
+                    </div>
+                  </div>
+                <div class="nes-container with-title is-centered is-rounded">
+                    <p class="title">Types(s)</p>
+                    <div *ngFor="let types of pokemon.types">
+                        <a class="nes-badge">
+                            <span [class]="types.type?.name">{{types.type?.name |titlecase}}</span>
+                        </a>
+                    </div>
+                </div>
+                <br>
+                <button style="width: 100%;" type="button" class="nes-btn is-primary" (click)="getById(pokemon.id, true)">Ver Pokemon</button>
+            </div>
+        </div>
+    </div>
+</div>

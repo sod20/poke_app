@@ -1,9 +1,15 @@
-<div class="wrapper">
-    <div class="sidebar" data-color="white" data-active-color="danger">
-        <sidebar-cmp></sidebar-cmp>
-    </div>
-    <div class="main-panel">
-        <navbar-cmp (pokeSearch)="setPoke($event)"></navbar-cmp>
-        <app-pokemon [pokemonSearch]="currentPoke"></app-pokemon>
+<div class="">
+    <div class="row">
+        <div class="col-2">
+            <div class="sidebar" data-color="white" data-active-color="danger">
+                <sidebar-cmp></sidebar-cmp>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="main-panel">
+                <navbar-cmp></navbar-cmp>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
     </div>
 </div>

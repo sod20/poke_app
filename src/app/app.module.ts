@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PokemonComponent } from './pokemon/pokemon.component';
+import { PokemonComponent } from './components/pokemon/pokemon.component';
+import { EffectivenessComponent } from './components/effectiveness/effectiveness.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,9 +21,9 @@ import { MatCardModule } from '@angular/material/card';
   declarations: [
     AppComponent,
     PokemonComponent,
+    EffectivenessComponent,
     NavbarComponent,
-    SidebarComponent,
-    TeamComponent
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

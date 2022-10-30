@@ -1,8 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+
+import { Component, OnInit, EventEmitter, Output, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/app/components/services/shared.service';
 import { FormControl, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
 import { Pokemon } from 'src/app/models/pokemon';
-import { PokemonService } from 'src/app/services/pokemon.service';
+import { PokemonService } from 'src/app/components/services/pokemon.service';
+
 
 @Component({
     selector: 'navbar-cmp',
@@ -10,15 +14,19 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 
 export class NavbarComponent implements OnInit{
-    public searchControl = new FormControl('', [Validators.minLength(3)]);
-
     @Output() pokeSearch: EventEmitter<Pokemon> = new EventEmitter();
+    public searchControl = new FormControl('', [Validators.minLength(3)]);
+    public types: string[] = ["test", "test2"];
+    selectedType: any;
 
     constructor(
-        private pokemonService: PokemonService
+        private pokemonService: PokemonService,
+        private _sharedService: SharedService,
+        private router: Router
     ) {
-        
+        this.types = Object.values(this._sharedService.getTypes()).sort();
     }
+
 
     ngOnInit(){
         this.searchControl.valueChanges
@@ -39,6 +47,14 @@ export class NavbarComponent implements OnInit{
                 )
             }
         });
+    }
+
+    changeType() {
+        console.log("GOTO " + this.selectedType);
+    }
+
+    gotoTable() {
+        this.router.navigate(['/types-table']);
     }
 
 }

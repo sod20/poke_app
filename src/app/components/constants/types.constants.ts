@@ -1,0 +1,22 @@
+export const SUPPER_EFFECTIVE = "supper_effective";
+export const NOT_EFFECTIVE = "not_effective";
+export const IMMUNITY = "immunity";
+
+export const TYPE_BUG       = "bug";
+export const TYPE_DRAGON    = "dragon";
+export const TYPE_DARK      = "dark";
+export const TYPE_ELECTRIC  = "electric";
+export const TYPE_FAIRY     = "fairy";
+export const TYPE_FIRE      = "fire";
+export const TYPE_FIGHTING  = "fighting";
+export const TYPE_FLYING    = "flying";
+export const TYPE_GHOST     = "ghost";
+export const TYPE_GRASS     = "grass";
+export const TYPE_GROUND    = "ground";
+export const TYPE_NORMAL    = "normal";
+export const TYPE_ICE       = "ice";
+export const TYPE_POISON    = "poison";
+export const TYPE_PSYCHIC   = "psychic";
+export const TYPE_ROCK      = "rock";
+export const TYPE_STEEL     = "steel";
+export const TYPE_WATER     = "water";
