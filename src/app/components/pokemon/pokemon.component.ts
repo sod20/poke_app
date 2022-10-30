@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { asyncScheduler, of } from 'rxjs';
-import { delay, mergeMap, subscribeOn } from 'rxjs/operators';
+import { delay, mergeMap, subscribeOn, switchMap } from 'rxjs/operators';
 import { GEN, Pokemon } from '../../models/pokemon';
 import { Generation } from '../../models/generation';
 import { PokemonService } from '../services/pokemon.service';

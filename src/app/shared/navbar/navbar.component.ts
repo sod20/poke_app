@@ -5,7 +5,7 @@ import { SharedService } from 'src/app/components/services/shared.service';
 import { FormControl, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
 import { Pokemon } from 'src/app/models/pokemon';
-import { PokemonService } from 'src/app/services/pokemon.service';
+import { PokemonService } from 'src/app/components/services/pokemon.service';
 
 
 @Component({

@@ -22,7 +22,8 @@ import { MatCardModule } from '@angular/material/card';
     AppComponent,
     PokemonComponent,
     EffectivenessComponent,
-    NavbarComponent
+    NavbarComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
