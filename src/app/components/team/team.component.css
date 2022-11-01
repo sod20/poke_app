@@ -1,0 +1,17 @@
+.team {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.team-member {
+    margin: 10px auto 10px;
+    min-width: 184px;
+}
+
+img {
+    height: 128px;
+}

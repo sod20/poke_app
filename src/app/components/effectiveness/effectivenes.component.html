@@ -1,13 +1,10 @@
-<h2>
-    Aqui vamos a mostrar la tabla de tipos
-</h2>
-
+<br>
 <div class="" style="margin: 1rem auto 1rem;">
     <div class="nes-table-responsive">
         <table class="nes-table is-bordered is-centered">
           <thead> 
             <tr>
-                <th></th>
+                <th>Attacker &#8595;</th>
                 <th *ngFor="let key of effectivenessTable">
                     <a class="nes-badge">
                         <span [class]="key.TYPE">{{key.TYPE |titlecase}}</span>
@@ -17,34 +14,33 @@
           </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let key of effectivenessTable">
+            <tr *ngFor="let row of effectsTable">
                 <td>
                     <a class="nes-badge">
-                        <span [class]="key.TYPE" style="margin: 0;">{{key.TYPE |titlecase}}</span>
+                        <span [class]="row.key" style="margin: 0;">{{row.key |titlecase}}</span>
                     </a>
                 </td>
-                <td *ngFor="let index of tableKeys">
-                  <div *ngIf="getTypeEffectiveness(key.TYPE, index) == 2">
-                    <a href="#" class="nes-badge">
-                      <span class="is-success">{{getTypeEffectiveness(key.TYPE, index)}}</span>
-                    </a>
-                  </div>
-                  <div *ngIf="getTypeEffectiveness(key.TYPE, index) == 1">
-                    <a href="#" class="nes-badge">
-                      <span class="is-primary">{{getTypeEffectiveness(key.TYPE, index)}}</span>
-                    </a>
-                  </div>
-                  <div *ngIf="getTypeEffectiveness(key.TYPE, index) == 0.5">
-                    <a href="#" class="nes-badge">
-                      <span class="is-error">{{getTypeEffectiveness(key.TYPE, index)}}</span>
-                    </a>
-                  </div>
-                  <div *ngIf="getTypeEffectiveness(key.TYPE, index) == 0">
-                    <a href="#" class="nes-badge">
-                      <span class="is-dark">{{getTypeEffectiveness(key.TYPE, index)}}</span>
-                    </a>
-                  </div>
-                    
+                <td *ngFor="let value of row.values">
+                    <div *ngIf="value == 2">
+                        <a class="nes-badge">
+                            <span class="is-success">2</span>
+                        </a>
+                    </div>
+                    <div *ngIf="value == 1">
+                        <a class="nes-badge">
+                            <span class="is-primary">1</span>
+                        </a>
+                    </div>
+                    <div *ngIf="value == 0.5">
+                        <a class="nes-badge">
+                        <span class="is-error">0.5</span>
+                        </a>
+                    </div>
+                    <div *ngIf="value == 0">
+                        <a class="nes-badge">
+                            <span class="is-dark">0</span>
+                        </a>
+                    </div>
                 </td>
             </tr>
             

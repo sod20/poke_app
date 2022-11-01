@@ -5,6 +5,8 @@ import { GEN, Pokemon } from '../../models/pokemon';
 import { Generation } from '../../models/generation';
 import { PokemonService } from '../services/pokemon.service';
 import { SharedService } from '../services/shared.service';
+import { SharedDataService } from '../services/shared-data.service';
+import { TeamMember } from 'src/app/models/teamMember';
 
 @Component({
   selector: 'app-pokemon',
@@ -29,7 +31,8 @@ export class PokemonComponent implements OnInit {
 
     constructor(
         private _pokemonService: PokemonService,
-        private _sharedService: SharedService
+        private _sharedService: SharedService,
+        private _sharedDataService: SharedDataService
     ) { 
     }
 
@@ -120,5 +123,9 @@ export class PokemonComponent implements OnInit {
 
     public setSearchOrSelected(pokemon: Pokemon): void {
         this.pokemonSearch = pokemon;
+    }
+
+    public addToTeam(id: number, name: string, sprite: string | undefined) {
+        this._sharedDataService.addTeamMember({id: id, index: 0, name: name, sprite: sprite});
     }
 }

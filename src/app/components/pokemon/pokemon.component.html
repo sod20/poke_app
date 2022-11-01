@@ -31,7 +31,7 @@
     </ng-template>
     <div class="row">
         <div *ngFor="let pokemon of pokemonList" class="col-lg-3 col-md-6 col-sm-6" style="margin: 0.5em auto 0.5em; ">
-            <div class="nes-container with-title">
+            <div class="nes-container with-title pokemon-box">
                 <p class="title">{{pokemon.id}} {{pokemon.name | titlecase}}</p>
                 <div class="row">
                     <div class="col-12 col-md-12">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <br>
-                <button style="width: 100%;" type="button" class="nes-btn is-primary" (click)="getById(pokemon.id, true)">Ver Pokemon</button>
+                <button style="width: 100%;" type="button" class="nes-btn is-primary" (click)="addToTeam(pokemon.id, pokemon.name, pokemon.sprites?.front_default)">Agregar a Equipo</button>
             </div>
         </div>
     </div>

@@ -1,0 +1,15 @@
+<p> Pokemon Team </p>
+<div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-2" *ngFor="let pok of pokeTeam">
+        <div *ngIf="pok.name == '' else showTeam">
+            <i class="nes-pokeball"></i>
+        </div>
+        <ng-template #showTeam>
+            <button class="nes-btn is-warning team-member" (click)="setCurrentIndex(pok.index)">
+                <img [src]="pok.sprite">
+                {{pok.name | titlecase}}
+            </button>
+        </ng-template>
+        
+    </div>
+</div>

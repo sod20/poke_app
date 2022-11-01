@@ -14,12 +14,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TeamComponent } from './team/team.component';
+import { TeamComponent } from './components/team/team.component';
 import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
+    TeamComponent,
     PokemonComponent,
     EffectivenessComponent,
     NavbarComponent,

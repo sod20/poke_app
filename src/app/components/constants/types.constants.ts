@@ -1,5 +1,7 @@
 export const SUPPER_EFFECTIVE = "supper_effective";
 export const NOT_EFFECTIVE = "not_effective";
+export const WEAK_AGAINST = "weak_against";
+export const RESISTANT_TO = "resistant_to";
 export const IMMUNITY = "immunity";
 
 export const TYPE_BUG       = "bug";
