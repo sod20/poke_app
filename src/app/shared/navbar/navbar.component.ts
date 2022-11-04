@@ -6,6 +6,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
 import { Pokemon } from 'src/app/models/pokemon';
 import { PokemonService } from 'src/app/components/services/pokemon.service';
+import { SharedDataService } from 'src/app/components/services/shared-data.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit{
     constructor(
         private pokemonService: PokemonService,
         private _sharedService: SharedService,
+        private _sharedDataService: SharedDataService,
         private router: Router
     ) {
         this.types = Object.values(this._sharedService.getTypes()).sort();
@@ -50,7 +52,11 @@ export class NavbarComponent implements OnInit{
     }
 
     changeType() {
-        console.log("GOTO " + this.selectedType);
+        this._sharedDataService.updateSelectedType(this.selectedType);
+    }
+
+    clearTypeSelected() {
+        this._sharedDataService.updateSelectedType("");
     }
 
     gotoTable() {

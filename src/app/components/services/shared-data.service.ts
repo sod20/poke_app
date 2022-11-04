@@ -12,7 +12,14 @@ export class SharedDataService {
     private teamMember = new BehaviorSubject<TeamMember>(defaultTeamMember);
     _teamMemberObs = this.teamMember.asObservable();
 
+    private selectedType = new BehaviorSubject<string>("");
+    _selectedTypeObs = this.selectedType.asObservable();
+
     addTeamMember(teamMember: TeamMember) {
         this.teamMember.next(teamMember);
+    }
+
+    updateSelectedType(type: string) {
+        this.selectedType.next(type);
     }
 }

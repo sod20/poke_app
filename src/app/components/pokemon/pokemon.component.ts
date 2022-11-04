@@ -1,12 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { asyncScheduler, of } from 'rxjs';
 import { delay, mergeMap, subscribeOn, switchMap } from 'rxjs/operators';
-import { GEN, Pokemon } from '../../models/pokemon';
+import { GEN, Pokemon, Type } from '../../models/pokemon';
 import { Generation } from '../../models/generation';
 import { PokemonService } from '../services/pokemon.service';
 import { SharedService } from '../services/shared.service';
 import { SharedDataService } from '../services/shared-data.service';
-import { TeamMember } from 'src/app/models/teamMember';
 
 @Component({
   selector: 'app-pokemon',
@@ -15,6 +14,7 @@ import { TeamMember } from 'src/app/models/teamMember';
 })
 export class PokemonComponent implements OnInit {
 
+    currentGeneration: number = 1;
     pokeNameId: string = "";
     @Input() pokemonSearch: Pokemon = {
         id: 0,
@@ -25,6 +25,7 @@ export class PokemonComponent implements OnInit {
         types: undefined,
         isSelected: false
     };
+    public originalList: Pokemon[] = [];
     public pokemonList: Pokemon[] = [];
 
     private generations: Generation = new Generation();
@@ -37,7 +38,8 @@ export class PokemonComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.changeGeneration(GEN.ONE);    
+        this.currentGeneration = GEN.ONE; 
+        this.changeGeneration(GEN.ONE);
         this._sharedService.currentGeneration$.subscribe(
             data => {
                 let gen: GEN = GEN.ONE;
@@ -68,13 +70,35 @@ export class PokemonComponent implements OnInit {
                         break;
                 }
                 if (data <= 7) {
+                    this.currentGeneration = gen;
                     this.changeGeneration(gen)
                 }
             }
-        )
+        );
+
+        this._sharedDataService._selectedTypeObs.subscribe(
+            value => {
+                if (value != "") {
+                    let result = this.originalList.filter(
+                        pokemon => {
+                            let candidate = false;
+                            pokemon.types?.forEach(t => {
+                                if (candidate) candidate = true;
+                                if (!candidate && t.type.name === value) candidate = true;
+                            });
+                            return candidate;
+                        }
+                    );
+                    this.pokemonList = result;
+                } else {
+                    this.pokemonList = this.originalList;
+                }
+            }
+        );
     }
 
     changeGeneration(gen: GEN): void {
+        this.originalList = [];
         this.pokemonList = [];
         const loadPokemon$ = of(this.generations.getGeneration(gen));
         loadPokemon$.pipe(
@@ -83,15 +107,16 @@ export class PokemonComponent implements OnInit {
                         return pokeIdByGen.map(pokeId => this._pokemonService.getByName(pokeId)
                         .subscribe(
                             (pokemon: Pokemon) => {
-                                this.pokemonList.push(pokemon);
+                                this.originalList.push(pokemon);
                             }
                         ))
                 }),
                 subscribeOn(asyncScheduler),
                 delay(500)//enough time to load the pokemon
             ).subscribe(
-                () => this.pokemonList.sort(
-                        (a:Pokemon, b: Pokemon) => a.id - b.id)
+                () => this.originalList.sort((a:Pokemon, b: Pokemon) => a.id - b.id),
+                err => console.error(err),
+                () => this.pokemonList = this.originalList
             );
     }
 
