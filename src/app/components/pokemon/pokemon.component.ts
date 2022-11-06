@@ -80,14 +80,7 @@ export class PokemonComponent implements OnInit {
             value => {
                 if (value != "") {
                     let result = this.originalList.filter(
-                        pokemon => {
-                            let candidate = false;
-                            pokemon.types?.forEach(t => {
-                                if (candidate) candidate = true;
-                                if (!candidate && t.type.name === value) candidate = true;
-                            });
-                            return candidate;
-                        }
+                        pokemon => pokemon.types?.map(t => t.type.name).includes(value)
                     );
                     this.pokemonList = result;
                 } else {
@@ -104,7 +97,7 @@ export class PokemonComponent implements OnInit {
         loadPokemon$.pipe(
                 switchMap(
                     (pokeIdByGen: number[]) => {
-                        return pokeIdByGen.map(pokeId => this._pokemonService.getByName(pokeId)
+                        return pokeIdByGen.map(pokeId => this._pokemonService.getByNameOrId(pokeId)
                         .subscribe(
                             (pokemon: Pokemon) => {
                                 this.originalList.push(pokemon);
@@ -125,7 +118,7 @@ export class PokemonComponent implements OnInit {
     }
 
     public getById(pokemonID: number | string, toTop: boolean = false): void {
-        this._pokemonService.getByName(pokemonID).subscribe(
+        this._pokemonService.getByNameOrId(pokemonID).subscribe(
             (data: Pokemon) => {
                 this.pokemonSearch = data;
                 if(toTop) this.goToTop();

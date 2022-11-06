@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit{
         .subscribe(
             value => {
                 if (value.length >= 3) {
-                    this.pokemonService.getByName(this.searchControl.value).pipe(
+                    this.pokemonService.getByNameOrId(this.searchControl.value).pipe(
                         catchError(() => {
                             return throwError("No se ha encontrado el pokemon");
                         })

@@ -15,3 +15,215 @@
 img {
     height: 128px;
 }
+
+.pokemon-box{
+    min-height: 340px;
+}
+
+.nes-badge span.bug:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #A8B820;
+    box-shadow: 0 0.5em #A8B820, 0 -0.5em #A8B820, 0.5em 0 #A8B820, -0.5em 0 #A8B820;
+}
+
+.nes-badge span.dark:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #705848;
+    box-shadow: 0 0.5em #705848, 0 -0.5em #705848, 0.5em 0 #705848, -0.5em 0 #705848;
+}
+
+.nes-badge span.dragon:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #7038F8;
+    box-shadow: 0 0.5em #7038F8, 0 -0.5em #7038F8, 0.5em 0 #7038F8, -0.5em 0 #7038F8;
+}
+
+.nes-badge span.electric:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #F8D030;
+    box-shadow: 0 0.5em #F8D030, 0 -0.5em #F8D030, 0.5em 0 #F8D030, -0.5em 0 #F8D030;
+}
+
+.nes-badge span.fairy:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #EE99AC;
+    box-shadow: 0 0.5em #EE99AC, 0 -0.5em #EE99AC, 0.5em 0 #EE99AC, -0.5em 0 #EE99AC;
+}
+
+.nes-badge span.fighting:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #C03028;
+    box-shadow: 0 0.5em #C03028, 0 -0.5em #C03028, 0.5em 0 #C03028, -0.5em 0 #C03028;
+}
+
+.nes-badge span.fire:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #F08030;
+    box-shadow: 0 0.5em #F08030, 0 -0.5em #F08030, 0.5em 0 #F08030, -0.5em 0 #F08030;
+}
+
+.nes-badge span.flying:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #A890F0;
+    box-shadow: 0 0.5em #A890F0, 0 -0.5em #A890F0, 0.5em 0 #A890F0, -0.5em 0 #A890F0;
+}
+
+.nes-badge span.ghost:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #705898;
+    box-shadow: 0 0.5em #705898, 0 -0.5em #705898, 0.5em 0 #705898, -0.5em 0 #705898;
+}
+
+.nes-badge span.grass:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #78C850;
+    box-shadow: 0 0.5em #78C850, 0 -0.5em #78C850, 0.5em 0 #78C850, -0.5em 0 #78C850;
+}
+
+.nes-badge span.ground:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #E0C068;
+    box-shadow: 0 0.5em #E0C068, 0 -0.5em #E0C068, 0.5em 0 #E0C068, -0.5em 0 #E0C068;
+}
+
+.nes-badge span.ice:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #98D8D8;
+    box-shadow: 0 0.5em #98D8D8, 0 -0.5em #98D8D8, 0.5em 0 #98D8D8, -0.5em 0 #98D8D8;
+}
+
+.nes-badge span.normal:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #A8A878;
+    box-shadow: 0 0.5em #A8A878, 0 -0.5em #A8A878, 0.5em 0 #A8A878, -0.5em 0 #A8A878;
+}
+
+.nes-badge span.normal-no-marging:first-child {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #A8A878;
+    box-shadow: 0 0.5em #A8A878, 0 -0.5em #A8A878, 0.5em 0 #A8A878, -0.5em 0 #A8A878;
+}
+
+.nes-badge span.poison:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #A040A0;
+    box-shadow: 0 0.5em #A040A0, 0 -0.5em #A040A0, 0.5em 0 #A040A0, -0.5em 0 #A040A0;
+}
+
+.nes-badge span.psychic:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #F85888;
+    box-shadow: 0 0.5em #F85888, 0 -0.5em #F85888, 0.5em 0 #F85888, -0.5em 0 #F85888;
+}
+
+.nes-badge span.rock:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #B8A038;
+    box-shadow: 0 0.5em #B8A038, 0 -0.5em #B8A038, 0.5em 0 #B8A038, -0.5em 0 #B8A038;
+}
+
+.nes-badge span.steel:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #B8B8D0;
+    box-shadow: 0 0.5em #B8B8D0, 0 -0.5em #B8B8D0, 0.5em 0 #B8B8D0, -0.5em 0 #B8B8D0;
+}
+
+.nes-badge span.water:first-child {
+    margin: 0 0 0 -50%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #6890F0;
+    box-shadow: 0 0.5em #6890F0, 0 -0.5em #6890F0, 0.5em 0 #6890F0, -0.5em 0 #6890F0;
+}

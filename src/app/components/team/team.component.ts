@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, OnDestroy } from '@angular/core';
-import { Pokemon } from 'src/app/models/pokemon';
-import { TeamMember } from 'src/app/models/teamMember';
-import { PokemonService } from '../services/pokemon.service';
-import { SharedDataService } from '../services/shared-data.service';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit} from "@angular/core";
+import { Pokemon, Type } from "src/app/models/pokemon";
+import { TeamMember } from "src/app/models/teamMember";
+import { PokemonService } from "../services/pokemon.service";
+import { SharedDataService } from "../services/shared-data.service";
+import { SharedService } from "../services/shared.service";
 
 @Component({
     selector: 'app-team',
@@ -12,40 +12,70 @@ import { Subscription } from 'rxjs';
 })
 export class TeamComponent implements OnInit, OnDestroy {
 
-    public pokeTeam: Array<TeamMember> = [];
-    public currentTeamIndex = 5;
-    @Output() selectedPokemon: EventEmitter<Pokemon> = new EventEmitter();
+    public currentTeam: TeamMember[] = [];
+    public pokemonTeam: Pokemon[] = [];
 
-    teamMemberSubscription: Subscription | undefined;
-
-    constructor(
+    public constructor(
         private _pokemonService: PokemonService,
+        private _sharedService: SharedService,
         private _sharedDataService: SharedDataService
-    ) {
-        this.pokeTeam = [];
-        for(let i = 0; i < 5; i++) {
-            this.pokeTeam.push({id: 0, index: i, name: '', sprite: ''});
-        }
-        console.log(this.pokeTeam);
-    }
+    ) {}
 
     ngOnInit(): void {
-        this.teamMemberSubscription = this._sharedDataService._teamMemberObs.subscribe(
-            teamMember => {
-                teamMember.index = this.currentTeamIndex;
-                this.pokeTeam[this.currentTeamIndex] = teamMember;
-                this.currentTeamIndex++;
-                if(this.currentTeamIndex >= 6) this.currentTeamIndex = 0;
+        this._sharedDataService.updateTeamViewState(false);
+        this.currentTeam = this._sharedDataService.getCurrentTeam();
+        this.currentTeam.forEach( member => {
+            if(member.id !== 0) {
+                this._pokemonService.getByNameOrId(member.id).subscribe(
+                    pokemon => {
+                        this.pokemonTeam.push(pokemon);
+                    }
+                )
             }
-        );
+        });
     }
 
     ngOnDestroy(): void {
-        this.teamMemberSubscription?.unsubscribe();
+        this._sharedDataService.updateTeamViewState(true);
     }
 
-    public setCurrentIndex(index: number) {
-        this.currentTeamIndex = index;
+    getTypes(): string[] {
+        let types: string[] = [];
+        this.pokemonTeam.forEach(poke => {
+            console.log(poke);
+            poke.types?.forEach(
+                type => types.push(type.type.name)
+            )
+        });
+        return types;
     }
 
+    getEffectiveness(types: Type[] | undefined) {
+        console.log(types);
+        let currentTypes = types?.map(t => t.type.name);
+        
+        let typesEffectiveness = this._sharedService.getEffectiveness();
+        let effectiveAgainst = [];
+        for(let target of typesEffectiveness) {
+            if(currentTypes?.includes(target.TYPE)) {
+                effectiveAgainst.push(target.SUPPER_EFFECTIVE);
+            }
+        }
+        return effectiveAgainst.flat();
+    }
+
+    generateRandomTeam(): void {
+        this.pokemonTeam = [];
+        for(let index = 0 ; index < 6; index++) {
+            this._pokemonService.getByNameOrId(this.getRandomNumber()).subscribe(
+                pokemon => {
+                    this.pokemonTeam.push(pokemon);
+                }
+            )
+        }
+    }
+
+    getRandomNumber(): number {
+        return Math.floor(Math.random() * 809)
+    }
 }

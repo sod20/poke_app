@@ -15,14 +15,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TeamComponent } from './components/team/team.component';
+import { TeamResumeComponent } from './components/team/team-resume.component';
 import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TeamComponent,
     PokemonComponent,
+    TeamComponent,
     EffectivenessComponent,
+    TeamResumeComponent,
     NavbarComponent,
     SidebarComponent
   ],

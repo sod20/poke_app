@@ -1,15 +1,49 @@
-<p> Pokemon Team </p>
-<div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-2" *ngFor="let pok of pokeTeam">
-        <div *ngIf="pok.name == '' else showTeam">
-            <i class="nes-pokeball"></i>
-        </div>
-        <ng-template #showTeam>
-            <button class="nes-btn is-warning team-member" (click)="setCurrentIndex(pok.index)">
-                <img [src]="pok.sprite">
-                {{pok.name | titlecase}}
-            </button>
-        </ng-template>
-        
-    </div>
+<div *ngIf="pokemonTeam.length == 0 else showTeam">
+    <button class="nes-btn is-warning" (click)="generateRandomTeam()"> 
+        Generate Random Team
+    </button>
 </div>
+
+<ng-template #showTeam>
+    <button class="nes-btn is-warning" (click)="generateRandomTeam()"> 
+        Generate Another Random Team
+    </button>
+    <div class="row">
+        <div *ngFor="let pok of pokemonTeam" class="col-5" style="margin: 0.5em auto 0.5em; ">
+            <div class="nes-container with-title pokemon-box">
+                <p class="title">{{pok.id}} {{pok.name | titlecase}}</p>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div class="img-container">
+                        <img [src]="pok.sprites?.front_default?? ''" [style]="{'max-width':'100%'}"/>
+                        <img [src]="pok.sprites?.front_shiny?? ''" [style]="{'max-width':'100%'}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="nes-container with-title is-centered is-rounded">
+                            <p class="title">Types(s)</p>
+                            <div *ngFor="let types of pok.types">
+                                <a class="nes-badge">
+                                    <span [class]="types.type?.name">{{types.type?.name |titlecase}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="nes-container with-title is-centered is-rounded">
+                            <p class="title">Strong Against</p>
+                            <div *ngFor="let type of getEffectiveness(pok.types)">
+                                <a class="nes-badge">
+                                    <span [class]="type">{{type |titlecase}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</ng-template>

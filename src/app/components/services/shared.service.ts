@@ -120,7 +120,7 @@ export class SharedService {
         },
         {
             TYPE: TYPE_GRASS,
-            SUPPER_EFFECTIVE: [TYPE_GRASS, TYPE_ROCK, TYPE_WATER],
+            SUPPER_EFFECTIVE: [TYPE_GROUND, TYPE_ROCK, TYPE_WATER],
             NOT_EFFECTIVE: [TYPE_FLYING, TYPE_POISON, TYPE_BUG, TYPE_STEEL, TYPE_FIRE, TYPE_GRASS, TYPE_DRAGON],
             IMMUNITY: []
         },
